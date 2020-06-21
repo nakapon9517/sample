@@ -25,5 +25,4 @@ func GetName(id string) string {
 		fmt.Println("not found")
 		return "not found"
 	}
-	// return ""
 }
