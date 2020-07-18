@@ -10,7 +10,7 @@ import (
 func main() {
 	e := echo.New()
 	e.GET("/hello:userid", func(c echo.Context) error {
-		var userid string = c.Param("userid")
+		userid := c.Param("userid")
 		name := getName(userid)
 		return c.String(http.StatusOK, "Hello, World!"+name)
 	})
@@ -20,14 +20,13 @@ func main() {
 func getName(id string) string {
 	switch id {
 	case "1":
-		return "aaa"
 		fmt.Println("aaa")
+		return "aaa"
 	case "2":
-		return "bbb"
 		fmt.Println("bbb")
+		return "bbb"
 	default:
-		return "not found"
 		fmt.Println("not found")
+		return "not found"
 	}
-	return ""
 }
