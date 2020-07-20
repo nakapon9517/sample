@@ -9,8 +9,8 @@ import (
 
 func main() {
 	e := echo.New()
-	e.GET("/hello:userid", func(c echo.Context) error {
-		userid := c.Param("userid")
+	e.GET("/hello:id", func(c echo.Context) error {
+		userid := c.Param("id")
 		name := getName(userid)
 		return c.String(http.StatusOK, "Hello, World!"+name)
 	})
