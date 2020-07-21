@@ -12,7 +12,12 @@ func main() {
 	e.GET("/hello:id", func(c echo.Context) error {
 		userid := c.Param("id")
 		name := getName(userid)
-		return c.String(http.StatusOK, "Hello, World!"+name)
+		return c.String(http.StatusOK, "Hello, World! "+name)
+	})
+	e.GET("/mail:id", func(c echo.Context) error {
+		userid := c.Param("id")
+		name := getName(userid)
+		return c.String(http.StatusOK, "Hello, World! "+name)
 	})
 	e.Logger.Fatal(e.Start(":1323"))
 }
