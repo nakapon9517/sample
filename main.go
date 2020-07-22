@@ -23,15 +23,13 @@ func main() {
 }
 
 func getName(id string) string {
+	fmt.Println("id:" + id)
 	switch id {
 	case "1":
-		fmt.Println("aaa")
 		return "aaa"
 	case "2":
-		fmt.Println("bbb")
 		return "bbb"
 	default:
-		fmt.Println("not found")
 		return "not found"
 	}
 }
