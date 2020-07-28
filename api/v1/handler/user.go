@@ -8,7 +8,7 @@ import (
 )
 
 func UserID(c echo.Context) (err error) {
-	var userid string = c.Param("id")
+	userid := c.Param("id")
 	name := GetName(userid)
 	return c.String(http.StatusOK, "Hello, World!"+name)
 }

@@ -8,5 +8,5 @@ import (
 // _SetupRoutes :
 // ルート設定
 func SetupRoutes(ver *echo.Group) {
-	ver.GET("/users/:id", handler.UserID)
+	ver.GET("/users:id", handler.UserID)
 }
