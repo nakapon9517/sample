@@ -5,7 +5,6 @@ import (
 	"github.com/nakapon9517/sample/api/v1/handler"
 )
 
-// _SetupRoutes :
 // ルート設定
 func SetupRoutes(ver *echo.Group) {
 	ver.GET("/users:id", handler.UserID)
