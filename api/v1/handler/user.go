@@ -14,6 +14,13 @@ func UserID(c echo.Context) (err error) {
 	return c.String(http.StatusOK, "Name:"+name+"Email:"+email)
 }
 
+func Login(c echo.Context) (err error) {
+	userId := c.Param("id")
+	pwd := c.Param("pwd")
+	isLogin := executeLogin(userId, pwd)
+	return c.String(http.StatusOK, isLogin)
+}
+
 func GetName(id string) string {
 	switch id {
 	case "1":
@@ -40,4 +47,8 @@ func GetEmail(id string) string {
 		fmt.Println("empty email")
 		return "empty email"
 	}
+}
+
+func executeLogin(id string, pwd string) bool {
+	return true
 }
