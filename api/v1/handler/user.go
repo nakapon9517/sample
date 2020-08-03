@@ -7,20 +7,23 @@ import (
 	"github.com/labstack/echo"
 )
 
+// UserID testUserId
 func UserID(c echo.Context) (err error) {
-	userid := c.Param("id")
-	name := GetName(userid)
-	email := GetEmail(userid)
+	id := c.Param("id")
+	name := GetName(id)
+	email := GetEmail(id)
 	return c.String(http.StatusOK, "Name:"+name+"Email:"+email)
 }
 
+// Login execLogin
 func Login(c echo.Context) (err error) {
-	userId := c.Param("id")
+	userID := c.Param("userId")
 	pwd := c.Param("pwd")
-	isLogin := executeLogin(userId, pwd)
+	isLogin := ExecuteLogin(userID, pwd)
 	return c.String(http.StatusOK, isLogin)
 }
 
+// GetName getName
 func GetName(id string) string {
 	switch id {
 	case "1":
@@ -35,6 +38,7 @@ func GetName(id string) string {
 	}
 }
 
+// GetEmail getEmail
 func GetEmail(id string) string {
 	switch id {
 	case "1":
@@ -49,6 +53,7 @@ func GetEmail(id string) string {
 	}
 }
 
-func executeLogin(id string, pwd string) bool {
-	return true
+// ExecuteLogin execLogin
+func ExecuteLogin(userId string, pwd string) string {
+	return userId + pwd
 }
