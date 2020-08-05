@@ -18,8 +18,8 @@ func UserID(c echo.Context) (err error) {
 // Login execLogin
 func Login(c echo.Context) (err error) {
 	userID := c.Param("userId")
-	pwd := c.Param("pwd")
-	isLogin := ExecuteLogin(userID, pwd)
+	// pwd := c.Param("pwd")
+	isLogin := ExecuteLogin(userID)
 	return c.String(http.StatusOK, isLogin)
 }
 
@@ -54,6 +54,6 @@ func GetEmail(id string) string {
 }
 
 // ExecuteLogin execLogin
-func ExecuteLogin(userId string, pwd string) string {
-	return userId + pwd
+func ExecuteLogin(userID string) string {
+	return userID
 }
