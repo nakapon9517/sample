@@ -8,5 +8,5 @@ import (
 // SetupRoutes setup
 func SetupRoutes(ver *echo.Group) {
 	ver.GET("/users:id", handler.UserID)
-	ver.GET("/users:userId:pwd", handler.Login)
+	ver.GET("/login:email", handler.Login)
 }

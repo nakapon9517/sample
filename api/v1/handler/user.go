@@ -4,8 +4,17 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 )
+
+// Login execLogin
+func Login(c echo.Context) (err error) {
+	userID := c.Param("userId")
+	pwd := c.Param("pwd")
+	isLogin := execLogin(db, userID, pwd)
+	return c.String(http.StatusOK, isLogin)
+}
 
 // UserID testUserId
 func UserID(c echo.Context) (err error) {
@@ -13,14 +22,6 @@ func UserID(c echo.Context) (err error) {
 	name := GetName(id)
 	email := GetEmail(id)
 	return c.String(http.StatusOK, "Name:"+name+"Email:"+email)
-}
-
-// Login execLogin
-func Login(c echo.Context) (err error) {
-	userID := c.Param("userId")
-	// pwd := c.Param("pwd")
-	isLogin := ExecuteLogin(userID)
-	return c.String(http.StatusOK, isLogin)
 }
 
 // GetName getName
@@ -53,7 +54,17 @@ func GetEmail(id string) string {
 	}
 }
 
-// ExecuteLogin execLogin
-func ExecuteLogin(userID string) string {
-	return userID
+// executeLogin execLogin
+func execLogin(db *gorm.DB, userID string, pwd string) string {
+	user := getUser(db, userID, pwd)
+	fmt.Println(user)
+	return user.Email
+}
+
+func getUser(db *gorm.DB, userID string, pwd string) User {
+	user := User{}
+	// db.Table("User").First(&user).Where("id = ?", userID, "password = ?", pwd)
+	db.Where("id = ?", userID, "password = ?", pwd).First(&user)
+	fmt.Println(user)
+	return user
 }
